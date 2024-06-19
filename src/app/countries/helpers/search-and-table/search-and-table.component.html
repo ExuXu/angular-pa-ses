@@ -1,0 +1,37 @@
+<h2>Por {{placeholderValue}}</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <!-- Search box -->
+    <shared-search-box
+      *ngIf="!regions; else elseRegion"
+      [placeholder]="placeholderValue"
+      [initialTerm]="initialTerm!"
+      (emittedValue)="searchByCapital($event)">
+    </shared-search-box>
+
+    <ng-template #elseRegion>
+      <div class="text-center">
+        <button *ngFor="let region of regions"
+          (click)="searchByCapital(region)"
+          class="btn mx-2"
+          [ngClass]="{'btn-primary': (region === selectedRegion)}">
+            {{ region }}
+        </button>
+      </div>
+    </ng-template>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <!-- Tabla de resultados -->
+    <hr>
+    <shared-loading *ngIf="isLoading"></shared-loading>
+
+    <countries-country-table [countries]="countries"></countries-country-table>
+
+  </div>
+</div>

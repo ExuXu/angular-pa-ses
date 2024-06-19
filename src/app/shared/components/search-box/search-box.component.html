@@ -1,0 +1,8 @@
+<!-- (keyup.enter)="searchTag(txtInput.value)" -->
+<input
+  type="text"
+  [placeholder]="'Busqueda por ' + placeholder"
+  class="form-control"
+  [value]="initialTerm"
+  (keyup)="onKeyPress(txtInput.value)"
+  #txtInput>
